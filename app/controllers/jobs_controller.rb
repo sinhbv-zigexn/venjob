@@ -1,7 +1,8 @@
 class JobsController < ApplicationController
   def index
-    # byebug
+    IndexSolr.perform
     rsolr = RSolr.connect url: Settings.core_url
-    @search = rsolr.select params: {:q => "*:*"}
+    result = rsolr.select params: { q: '*:*' }
+    @search = result['response']
   end
 end
