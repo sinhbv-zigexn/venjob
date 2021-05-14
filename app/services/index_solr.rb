@@ -5,14 +5,13 @@ class IndexSolr
 
   DESTINATION = 'tmp/storage/ftp'.freeze
 
-  def self.perform
-    download_file
-    extract_downloaded_file
-    import_to_sorl
-  end
-
-  private
   class << self
+    def execute
+      download_file
+      extract_downloaded_file
+      import_to_sorl
+    end
+
     def download_file
       FileUtils.mkdir_p "#{Rails.root}/#{DESTINATION}"
       ftp = Net::FTP.new
@@ -32,12 +31,11 @@ class IndexSolr
 
     def import_to_sorl
       rsolr = RSolr.connect url: Settings.core_url
-      body = File.read("#{DESTINATION}/jobs.csv")
+      body = File.read("#{DESTINATION}/#{@entry_name}")
       docs = CSV.parse(body, headers: :first_row).map(&:to_h)
       rsolr.delete_by_query '*:*'
       rsolr.add docs
-      # rsolr.commit
-      rsolr.optimize
+      rsolr.commit
     end
   end
 end
