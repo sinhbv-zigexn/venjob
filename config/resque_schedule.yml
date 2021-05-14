@@ -1,0 +1,3 @@
+QueueDocumentWorker:
+  cron: '0 0 * * * Asia/Bangkok'
+  description: "This job queues all content for indexing in solr"

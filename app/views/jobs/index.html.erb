@@ -1,2 +1,72 @@
-<h1>Jobs#index</h1>
-<%= @search %>
+<div class="wrapper">
+  <div class="page_preloader" style="display: none;"></div>
+
+  <!-- ======================= Start Banner ===================== -->
+  <div class="utf_main_banner_area" style="background-image:url(assets/slider_bg.jpg);" data-overlay="8">
+    <div class="container">
+      <div class="col-md-8 col-sm-10">
+        <div class="caption cl-white home_two_slid">
+          <h2>Search Between More Then <span class="theme-cl">50,000</span> Open Jobs.</h2>
+        </div>
+        <form action="/jobs">
+          <fieldset class="utf_home_form_one">
+            <div class="col-md-4 col-sm-4 padd-0">
+              <input type="text" name="keyword" value="<%= params[:keyword] %>" class="form-control br-1" placeholder="Search Keywords...">
+            </div>
+            <div class="col-md-3 col-sm-3 padd-0">
+              <select class="wide form-control br-1" name="work_place" style="display: none;">
+                <option data-display="Location" value>Show All</option>
+                <%= render partial: "location", collection: @work_places %>
+              </select>
+            </div>
+
+            <div class="col-md-3 col-sm-3 padd-0">
+              <select class="wide form-control" name="category" style="display: none;">
+                <option data-display="Category" value>Show All</option>
+                <%= render partial: "category", collection: @categories %>
+              </select>
+            </div>
+
+            <div class="col-md-2 col-sm-2 padd-0 m-clear">
+              <button type="submit" class="btn theme-btn cl-white seub-btn">Search</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ======================= End Banner ===================== -->
+
+  <!-- ================= Job start ========================= -->
+  <section class="padd-top-80 padd-bot-80">
+    <div class="container">
+      <div class="row">
+        <div class="mrg-bot-20">
+          <p class="col-md-2 job-type">Total: <%= @total %></p>
+          <p class="col-md-6 job-type">Search for: <%= params[:keyword] %></p>
+        </div>
+      </div>
+      <% if @jobs.presence %>
+        <div class="col-md-12 mrg-bot-20 text-right">
+          <a href="#!" class="btn theme-btn btn-m">Browse All Jobs</a>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade in show active" id="recent" role="tabpanel">
+            <div class="row">
+              <%= render partial: "job", collection: @jobs %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mrg-top-20 text-right">
+          <a href="#!" class="btn theme-btn btn-m">Browse All Jobs</a>
+        </div>
+      <% else %>
+        <div class="col-md-12 mrg-bot-20 text-center">
+          No job match
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

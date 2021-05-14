@@ -1,0 +1,16 @@
+<div class="utf_grid_job_widget_area">
+  <div class="utf_job_like">
+    <label class="toggler toggler-danger">
+      <i class="fa fa-heart"></i>
+    </label>
+  </div>
+  <div class="u-content" style="margin: 0 200px">
+    <h5><a href="#!"><%= job[:name] %></a></h5>
+    <p class="job-type full-type"><%= job[:work_place] %></p>
+    <p class="job-salary full-type">Salary: <%= job[:salary] %></p>
+    <br>
+    <div class="text-muted text-left">
+      <%= simple_format(job[:description]) %>
+    </div>
+  </div>
+</div>

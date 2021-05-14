@@ -13,4 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery.min.js
+//= require slick.js
+//= require jquery.nice-select.min.js
 //= require_tree .
