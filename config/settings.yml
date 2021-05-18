@@ -1,1 +1,6 @@
-core_url: http://localhost:8983/solr/films
+core_url: http://localhost:8983/solr/venjobs
+ftp:
+  ip: 192.168.1.156
+  username: training
+  password: training
+  file_name: jobs.zip
